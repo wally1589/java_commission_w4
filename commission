@@ -1,0 +1,40 @@
+/* Date: 4/11
+/* Program Name: commissionCalculation
+/* Description: This is the additional class. This will be used to display the symbol "=" in between 
+/* the final two statements. 			 
+*/
+
+public class commissionCalculation 
+{	
+		// it will the calculation for the commission of the salesman  
+		// this will be exported to the main class
+	
+	public double getcommissionCalculation(double sales)
+	{
+		double fixedSalary = 45000;
+		double commissionR = .03;
+		double accelerationR = 1.45;
+		double total = 0;
+		double finalTotal = 0;
+		double finalC = 100000;
+		double commissionclass;
+		double commissionCalculation;
+		
+		if (sales < 80000)
+		{
+			commissionclass = 0;
+		}
+	
+		else if (sales <= 100000)
+    	{
+        	commissionclass = commissionR;
+        }
+		else
+        {
+        	commissionclass = accelerationR*commissionR;
+        } 
+		finalTotal = sales*commissionR;
+		commissionCalculation = finalTotal + fixedSalary;
+		return commissionCalculation; 
+	}
+}
