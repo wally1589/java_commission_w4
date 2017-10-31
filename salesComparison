@@ -1,0 +1,127 @@
+   /* Name: Wally R.
+ /* Date: 4/4
+ /* Program Name: Individualw4
+ /* Description: this is week 4 assignment. this assignment will require to enter a number a salesmen, sales and prompt how much
+  *              it differs from the highest sales earner. The application will work with week3 assignment. It will ask the user
+ /* 			 to input the sales, and it will require the user to reach the 80% of the targeted sales which is 100,000
+ /*				 and then it will calculate the 3%. Another aspect, it will increase 1.5% additional to the 3%. This will be  
+ /*				 displayed. Then at the end, should also display a table of potential total annual compensation that the user
+ /* 			 could have earned, in $5000 increments above the user's annual sales, until it reaches 50% above the user's 
+ /* 			 annual sales.
+ */
+
+import java.util.Scanner;
+
+public class SalespersonComparison 
+{
+	public static void main(String[] args)
+	{
+		// These are the variables will be to calculate this exercise. Some of these variables in the 
+		// other classes. 
+		// user will be prompt greeting, and then it will ask how many salesmen it will compare. Then it
+		// ask for the sales of each one. Sales will be able to be inputed by the user. Total is a fixed amount of 45000 of fixedSalary
+		// commissionR will calculate the 3 percent of the sales. accelerationR 1.45% will be applied once
+		// requirement is met. total and finalTotal is 0 so we can sum everything in that operation as well 
+		// as declare it as a variable. finalC is 100,000 for the graph displaying the projection.
+		
+		double[] sales;
+		double fixedSalary = 45000;
+		double commissionR = .03;
+		double accelerationR = 1.45;
+		double total = 0;
+		double finalTotal = 0;
+		double finalC = 100000;
+		double [] commissionCalculation;
+		int salesperson = 0;
+		int mostSales = 0;
+		int salesmen;
+		String[] salespersonname;
+		
+		
+		// The sequence will prompt greeting, and then it will ask how many salesmen it will compare. Then it
+		// ask for the sales of each one. Sales will be able to be inputed by the user.
+		
+			 
+		
+			System.out.println(" Hello! ");
+			System.out.println(" This will compare the sales with the highest earner and the difference");
+			System.out.println(" It will also show the projections of the highest earner");		
+			System.out.println(" How many salesmen are we comparing?: ");   	 	
+			
+			Scanner input = new Scanner(System.in);
+			salesmen = input.nextInt();
+
+		// after inputting the number of salesmen, in order
+		// it will ask it will display from 1 instead of zero because of x = x + 1	
+		// it will have the variables for the number of salesmen, sales and the other class
+			
+			salespersonname = new String[salesmen];
+			commissionCalculation = new double [salesmen];
+			sales = new double [salesmen];
+		
+			
+			for (int x = 0; x <salespersonname.length; x = x + 1)
+			{	
+				System.out.println(" Enter name of salesperson " + (x + 1) + ":");
+				salespersonname[x] = input.next();
+			}
+			
+			// this will ask for the sales each of them had starting from 
+			// one then to the number of salesmen. it will limit the amount 
+			// from o to 500000. t
+			
+			for (int x = 0; x < salespersonname.length; x = x + 1)	
+			{	
+				System.out.println(" Please enter a sales for salesperson " + (x + 1));
+				
+				while(sales[x] < 0 || sales[x] > 500000)
+					System.out.println(" Enter a number from 1 to 500,000");
+					sales[x] = input.nextInt();					
+			}
+			//importing the commissionclass in which it will have the calculation of the 
+			
+			commissionCalculation commissionclass = new commissionCalculation();
+			
+			for (int x = 1; x < salespersonname.length; x = x + 1)
+			{
+				commissionCalculation[x] = commissionclass.getcommissionCalculation(sales[x]);
+			}
+			
+			for (int x = 1; x < salespersonname.length; x = x + 1)
+			{
+				if (sales[x] > sales[mostSales])
+				{
+					mostSales = x;
+				}
+			}
+			
+			System.out.println("The highest sales goes to: " + salespersonname[mostSales] 
+							   + " with: " + sales[mostSales] + ", and the compensation is: "
+							   + commissionCalculation[mostSales]);
+	            System.out.println("");
+	        for(int x = 1; x < salespersonname.length; x = x + 1)
+	        {
+	        	if(x != mostSales)
+	            {
+	        		System.out.println(salespersonname[x] + " needed to sell $"
+	        						  + (sales[mostSales] - sales[x]) + " to match " 
+	                                  + salespersonname[mostSales] + "'s sales :$" + sales[mostSales]);
+	            }
+	        }
+	        individualw5additionclass display = new individualw5additionclass();
+		    System.out.println("This will show the projections of the highest earner: ");
+		    display.restofprogram();
+	        do 
+	        {    
+	    	   total = finalTotal;
+	    	   finalC = finalC + 5000;
+	           finalTotal = finalC*commissionR*accelerationR + fixedSalary;
+	           System.out.println(finalC + "\t\t" + finalTotal);		          		     	    
+	   	    }
+			
+	        while (finalC <= (accelerationR*sales[mostSales]));
+	        display.restofprogram();
+	}
+}	
+	        
+	        
