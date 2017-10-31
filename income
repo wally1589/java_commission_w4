@@ -1,0 +1,51 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+class Income 
+{
+     // Declare variables of sales, commission, income, compensation, compensation2, and count.
+    double fixedsalary = 45000;
+    double sales, commission, income, compensation, count;
+ 
+    
+    // Method to set sales
+    public void setSales(double s)
+    {
+        sales = s;
+    }
+    
+    // Create commission variable, method to calculate total commission.
+    public double getCommission()
+    {
+        commission = sales * .03;
+        return commission;
+    }
+
+    // Create compensation variable, method to calculate total compensation.
+    // Snce the compensation is only after 80% the if-else statement is used. 
+    public double getCompensation()
+    {
+            if (sales >= 80000)
+                {
+                    compensation = sales * .03 * 1.45 + fixedsalary;
+                    return compensation;
+                }
+            else
+                {
+                    compensation = fixedsalary + commission;
+                    return compensation;
+                }
+                    
+    }
+    
+    //Added to get initial count for loop involving chart
+        public double getCount()
+    {
+        count = 100000;
+        return count;
+    }
+        
+}
